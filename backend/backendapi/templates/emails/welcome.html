@@ -1,0 +1,38 @@
+<!-- templates/emails/welcome_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .header { background-color: #4A90E2; padding: 30px; text-align: center; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .header h1 { margin: 0; font-size: 28px; }
+        .content { padding: 30px; line-height: 1.6; color: #333; }
+        .content p { margin-bottom: 15px; }
+        .button-container { text-align: center; margin-top: 30px; margin-bottom: 30px; }
+        .button { background-color: #28a745; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; }
+        .footer { background-color: #f0f0f0; padding: 20px; text-align: center; color: #777; font-size: 12px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Classes, {{ user_name }}!</h1>
+        </div>
+        <div class="content">
+            <p>Dear {{ user_name }},</p>
+            <p>Thank you for signing up for our class.</p>
+           
+            <div class="button-container">
+                <a href="{{ product_link }}" class="button" target="_blank" rel="noopener noreferrer">View Classes</a>
+            </div>
+            <p>If you have any questions, feel free to reply to this email.</p>
+            <p>Sincerely,<br>Kotekan Dojo</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 This Product. All rights reserved.</p>
+            <p>This email was sent to your email address because you registered on our platform.</p>
+        </div>
+    </div>
+</body>
+</html>

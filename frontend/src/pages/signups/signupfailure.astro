@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+// Extract the error message from the URL query parameters
+const urlParams = new URLSearchParams(Astro.url.search);
+const errorMessage =
+  urlParams.get("message") || "No specific error message provided.";
+---
+
+<Layout>
+  <div
+    class="w-full px-4 py-8 flex justify-center items-center min-h-[calc(100vh-80px)]"
+  >
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
+      <h1 class="text-4xl font-bold text-red-600 mb-4">
+        <!-- {t("signupError.heading")} 😞 --> Looks like there was a problem.
+      </h1>
+      <p class="text-lg text-gray-700 mb-6">
+        <!--{t("signupError.description")} --> We could not sign you up for some
+        reason.
+      </p>
+      <p class="text-md text-red-800 font-semibold mb-6">
+        <!-- {t("signupError.details")}: -->
+        <span class="block mt-2 p-2 bg-red-100 rounded-md font-mono text-sm">
+          <!-- Display the extracted error message -->
+          {errorMessage}
+        </span>
+      </p>
+      <a href="/signups/signup">
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6
+        rounded-2xl transition duration-300 mr-4" >
+        <!-- {t("signupError.tryAgain")} --> Try again.
+      </a>
+      <a
+        href="/"
+        class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-3 px-6
+        rounded-2xl transition duration-300"
+      >
+        <!-- {t("signupError.backHome")}--> Return to home page.
+      </a>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="w-full px-4 py-8 flex justify-center">
+    <div class="w-full max-w-md">
+      <h1 class="text-4xl text-center font-bold mb-6">Product Sign Up</h1>
+
+      <form
+        id="signup-form"
+        class="bg-gray-200 p-6 rounded-2xl shadow-md space-y-4"
+        name="signup-form"
+        method="POST"
+      >
+        <p>
+          <label class="block text-sm font-semibold mb-1"> </label>
+          <input
+            type="text"
+            name="name"
+            class="bg-white w-full p-3 rounded outline-1 outline-gray-300"
+            required
+          />
+        </p>
+
+        <p>
+          <label class="block text-sm font-semibold mb-1"> </label>
+          <input
+            type="email"
+            name="email"
+            class="bg-white w-full p-3 rounded outline-1 outline-gray-300"
+            required
+          />
+        </p>
+
+        <p>
+          <label class="block text-sm font-semibold mb-1"> </label>
+          <textarea
+            name="message"
+            rows="5"
+            class="bg-white w-full p-3 rounded outline-1 outline-gray-300"
+            required></textarea>
+        </p>
+
+        <p class="text-center">
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-2xl px-6 py-3"
+          >
+            Send
+          </button>
+        </p>
+        <!-- Add a message div for debugging -->
+        <div id="debug-message" class="text-center text-red-500 mt-4 font-bold">
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>
+<script is:inline>
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const signupForm = document.getElementById("signup-form");
+
+
+    // Ensure the signup form element exists before attaching the event listener.
+    if (signupForm) {
+      signupForm.addEventListener("submit", async function (event) {
+        event.preventDefault(); 
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries()); // Convert form data to a plain object.
+
+        const djangoApiUrl = "https://django.api/api/signup/";
+
+        try {
+          // Send the signup data to the Django API.
+          const response = await fetch(djangoApiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", // Indicate JSON payload.
+            },
+            body: JSON.stringify(data), // Send data as a JSON string.
+          });
+
+          const result = await response
+            .json()
+            .catch(() => ({ message: "Could not parse response as JSON." }));
+
+          console.log("DEBUG: Response body (parsed):", result);
+
+          // Check if the response was successful (HTTP status 2xx).
+          if (response.ok) {
+            console.log("DEBUG: Signup successful! Response:", result);
+     
+            window.location.href = `/signups/signupsuccess`;
+          } else {
+            console.error("DEBUG: Signup failed (non-2xx status):", result);
+
+
+        
+          if (result && typeof result === "object") {
+              if (result.email) {
+                errorMessage = `Email: ${Array.isArray(result.email) ? result.email.join(", ") : result.email}`;
+              } else if (result.name) {
+                errorMessage = `Name: ${Array.isArray(result.name) ? result.name.join(", ") : result.name}`;
+              } else if (result.message) {
+                errorMessage =
+                  typeof result.message === "string"
+                    ? result.message
+                    : JSON.stringify(result.message);
+              } else if (result.detail) {
+                errorMessage =
+                  typeof result.detail === "string"
+                    ? result.detail
+                    : JSON.stringify(result.detail);
+              } else {
+                errorMessage = JSON.stringify(result);
+              }
+            } else if (typeof result === "string") {
+              errorMessage = result;
+            }
+         
+            window.location.href = `/signups/signuperror?message=${encodeURIComponent(errorMessage)}`;
+          }
+        } catch (error) {
+          
+          console.error("DEBUG: Network or other error (fetch failed):", error);
+          
+        }
+        console.log("DEBUG: --- Signup submission attempt finished ---");
+      });
+    } else {
+      
+      console.error(
+        "Error: The form with ID 'signup-form' was not found when DOMContentLoaded fired."
+      );
+    }
+  });
+</script>
