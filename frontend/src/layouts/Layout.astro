@@ -5,7 +5,7 @@ interface Props {
   title: string;
   description: string;
   image: string;
-  activeNav: "home" | "about" | "coaching" | "history";
+  activeNav: "home" | "about" | "products" | "signups";
 }
 
 const {
@@ -93,26 +93,26 @@ const {
             </li>
             <li>
               <a
-                href="/coaching"
+                href="/products"
                 class={`text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-300 ease-in-out ${
-                  activeNav === "coaching"
+                  activeNav === "products"
                     ? "bg-gray-700 text-white shadow-md"
                     : ""
                 }`}
               >
-               Product
+               Products
               </a>
             </li>
             <li>
               <a
-                href="/history"
+                href="/signups/signup"
                 class={`text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-300 ease-in-out ${
-                  activeNav === "history"
+                  activeNav === "signups"
                     ? "bg-gray-700 text-white shadow-md"
                     : ""
                 }`}
               >
-              Buy
+Sign Up
               </a>
             </li>
           </ul>
