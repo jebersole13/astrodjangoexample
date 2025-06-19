@@ -1,0 +1,160 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  activeNav: "home" | "about" | "coaching" | "history";
+}
+
+const {
+  title = "Product Site",
+  description = "Buy the product!",
+  image = "",
+  activeNav,
+} = Astro.props;
+---
+
+<!doctype html>
+<html class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image:alt" content={title} />
+    {/* Good for accessibility and context */}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:image:alt" content={title} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body
+    class="flex flex-col h-full w-full min-h-screen relative content-center"
+  >
+    <header class="w-full bg-gray-800 shadow-xl py-4">
+      <div
+        class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center"
+      >
+        <h1
+          class="text-3xl font-extrabold text-white mb-4 sm:mb-0 tracking-wide"
+        >
+          <a href="/" class="hover:text-blue-400 transition-colors duration-200"
+            >Product The Website
+          </a>
+        </h1>
+        <nav>
+          <ul class="flex flex-wrap justify-center sm:justify-end space-x-4">
+            <li>
+              <a
+                href="/about"
+                class={`text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-300 ease-in-out ${
+                  activeNav === "about"
+                    ? "bg-gray-700 text-white shadow-md"
+                    : ""
+                }`}
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="/coaching"
+                class={`text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-300 ease-in-out ${
+                  activeNav === "coaching"
+                    ? "bg-gray-700 text-white shadow-md"
+                    : ""
+                }`}
+              >
+               Product
+              </a>
+            </li>
+            <li>
+              <a
+                href="/history"
+                class={`text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-300 ease-in-out ${
+                  activeNav === "history"
+                    ? "bg-gray-700 text-white shadow-md"
+                    : ""
+                }`}
+              >
+              Buy
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <footer class="w-full bg-gray-900 text-gray-400 py-8 mt-12">
+      <div class="container mx-auto px-4 text-center">
+        <p>
+          &copy; {new Date().getFullYear()} Product the website. All rights reserved.
+        </p>
+        <p class="text-sm mt-2 mb-6">Best product for you.</p>
+        <div class="flex justify-center space-x-6">
+          <a
+            href="https://www.youtube.com/@yourchannel"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-red-500 transition-colors duration-200"
+          >
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-blue-500 transition-colors duration-200"
+          >
+            <i class="fab fa-facebook fa-2x"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-purple-400 transition-colors duration-200"
+          >
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
