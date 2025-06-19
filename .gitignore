@@ -1,0 +1,121 @@
+# ====================================== #
+# General and Project-Specific Ignores   #
+# ====================================== #
+
+# Environment variables (CRITICAL for security!)
+# Catches .env, .env.local, .env.development, etc.
+.env
+.env.*
+!.env.example # Allow an example .env file to be committed (without values)
+.env.development.local
+.env.production.local
+
+# Output of bundling/transpilation or temporary files
+*.log
+*.tmp
+*.bak
+*.swp # Vim swap files
+*~    # Emacs backup files
+
+# OS-specific files
+.DS_Store # macOS
+Thumbs.db # Windows
+ehthumbs.db # Windows
+Desktop.ini # Windows
+.directory # Linux
+
+# IDE and Editor specific files
+.idea/             # IntelliJ / PyCharm project files
+*.iml              # IntelliJ module files
+.vscode/           # VS Code settings
+*.sublime-project
+*.sublime-workspace
+
+
+# ====================================== #
+# Astro Frontend Specific Ignores        #
+# (Assuming Astro project is in a subdirectory, or at root)
+# ====================================== #
+
+# Node modules directory
+node_modules/
+
+# Astro build output directory
+# Default is `dist/` but could be customized
+dist/
+.astro/
+
+# npm package manager cache and logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+# npm cache directory in home
+# .npm/
+
+# Yarn files
+.yarn/
+.yarn-integrity
+
+# Other frontend build tools/frameworks (if you happen to use them inside Astro)
+.svelte-kit/ # If using SvelteKit within Astro
+.next/       # If using Next.js within Astro
+.nuxt/       # If using Nuxt.js within Astro
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+
+# ====================================== #
+# Django Backend Specific Ignores        #
+# (Assuming Django project is in a subdirectory, or at root)
+# ====================================== #
+
+# Python byte-code files
+*.pyc
+__pycache__/
+*.so
+*.egg
+*.egg-info
+
+# Virtual environment directory
+# Adjust this if your virtual environment is named differently or in a specific subfolder.
+venv/
+env/
+.venv/
+
+# SQLite database file (if used for local development)
+# This is usually in the root of your Django project, but confirm its path.
+db.sqlite3
+*.sqlite3-journal
+
+# User-uploaded media files
+# This is usually your MEDIA_ROOT, make sure the path is correct relative to .gitignore.
+media/
+# If you have specific subdirectories for uploads you want to ignore, add them.
+# e.g., my_app/uploads/
+
+# Collected static files (from `python manage.py collectstatic`)
+# This is usually your STATIC_ROOT, ensure the path is correct.
+static_collected/
+staticfiles/ # Common alternative for collectstatic output
+
+# Django-specific generated files
+# Translation files
+*.mo
+*.pot
+
+# Local settings file that might override production settings
+# Only if you separate your local settings from base settings.py and want to ignore.
+local_settings.py
+
+# Debugging and profiling artifacts
+.ropeproject/
+.pytest_cache/
+.coverage
+
+# Specific migration cache files (be careful, typically migrations themselves are tracked)
+# Only ignore if these are truly temporary/cache files generated outside of normal `migrations` folders.
+# Generally, you want the actual migration files (*.py) in source control.
+*/migrations/*.pyc
