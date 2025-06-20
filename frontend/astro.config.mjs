@@ -6,6 +6,8 @@ import tailwind from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://<jebersole13.github.io', // Replace with your GitHub Pages URL
+  base: '/astrodjangoexample',
   vite:{
     plugins:[tailwind()]
   },
