@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Exercise1 from "../assets/aerobics-80s (1).gif";
+import Exercise2 from "../assets/aerobics-80s.gif";
+import Exercise3 from "../assets/80s-aerobics-aerobic-championship.gif";
+---
+
+<Layout>
+  <div class="grid justify-center gap-5">
+    <h1 class="text-6xl font-black">Exercises</h1>
+    <h2 class="text-3xl font-extrabold">Some fine examples of some exercises in our gym.</h2>
+    <img
+      src={Exercise1.src}
+      alt="80s"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+    
+    <img
+      src={Exercise2.src}
+      alt="90s"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+
+    <img
+      src={Exercise3.src}
+      alt="90s"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Jackie from "../assets/jackieboy.jpg";
+import Riche from "../assets/richyboy.jpg";
+import Arnie from "../assets/arnie.jpg";
+---
+
+<Layout>
+  <div class="grid justify-center gap-5 p-4">
+    <h1 class="text-5xl font-bold">Our Trainers</h1>
+    <h2 class="text-3xl font-extrabold">World famous</h2>
+    <img
+      src={Jackie.src}
+      alt="Jackieboy"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+    <img
+      src={Riche.src}
+      alt="Richieboy"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+    <img
+      src={Arnie.src}
+      alt="Arnieboy"
+      class="rounded-xl shadow-md w-full max-w-xl mx-auto"
+    />
+  </div>
+</Layout>

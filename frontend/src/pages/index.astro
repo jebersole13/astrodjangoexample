@@ -1,9 +1,18 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
 
-
+import LandingImage from "../assets/landingimage.png";
 ---
 
-<Layout title="Home" activeNav="home">
-
+<Layout title="Home">
+  <section class="w-full h-screen">
+    <img src={LandingImage.src} alt="" class="w-full h-screen object-cover" />
+  </section>
+  <section class="flex justify-center">
+    <button
+      class="bg-green-400 p-6 m-5 rounded-3xl text-5xl text-white animate-pop-in delay-600"
+    >
+      <a href="./signups/signup">Sign up here</a>
+    </button>
+  </section>
 </Layout>
